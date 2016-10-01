@@ -15,7 +15,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     boolean check = true;
     public int iLevel = 1;
-    private int iUserInput = 3;
+    private int iUserInput = 4;
     private boolean isVertical = true;
     public ArrayList<ImageView> alButtons = new ArrayList<>();
 
@@ -56,30 +56,12 @@ public class MainActivity2 extends AppCompatActivity {
         for (int i = 0; i < iInput; i++) {
 
             final ImageView button = new ImageView(MainActivity2.this);
-            button.setId(i);
+            button.setId(0);
             button.setTag("Button" + i);
             button.setLayoutParams(lpParams);
 
-            switch (i) {
-                case 0:
-                    button.setImageResource(R.drawable.buttonblue1);
-                    break;
-                case 1:
-                    button.setImageResource(R.drawable.buttonred1);
-                    break;
-                case 2:
-                    button.setImageResource(R.drawable.buttongreen1);
-                    break;
-                case 3:
-                    button.setImageResource(R.drawable.buttonyellow1);
-                    break;
-                case 4:
-                    button.setImageResource(R.drawable.buttonpurple1);
-                    break;
-                case 5:
-                    button.setImageResource(R.drawable.buttonorange1);
-                    break;
-            }
+            button.setImageResource(R.drawable.buttonblue1);
+
             button.setScaleType(ImageView.ScaleType.FIT_XY);
 
             alButtons.add(button);
@@ -108,12 +90,12 @@ public class MainActivity2 extends AppCompatActivity {
         for (int i = 0; i < iInput; i++) {
 
             final ImageView button = new ImageView(MainActivity2.this);
-            button.setId(i);
+            button.setId(1);
             button.setTag("Button" + i);
             button.setLayoutParams(lpParams);
 
             if ((i+2) % 2 == 1){
-                button.setImageResource(R.drawable.buttonblue1);
+                button.setImageResource(R.drawable.buttonred1);
             } else{
                 button.setVisibility(View.INVISIBLE);
             }

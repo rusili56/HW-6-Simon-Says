@@ -18,18 +18,6 @@ public class Timer {
             case 1:
                 bInput.setImageResource(R.drawable.buttonred2);
                 break;
-            case 2:
-                bInput.setImageResource(R.drawable.buttongreen2);
-                break;
-            case 3:
-                bInput.setImageResource(R.drawable.buttonyellow2);
-                break;
-            case 4:
-                bInput.setImageResource(R.drawable.buttonpurple2);
-                break;
-            case 5:
-                bInput.setImageResource(R.drawable.buttonorange2);
-                break;
         }
 
         new Handler().postDelayed(new Runnable() {
@@ -41,18 +29,6 @@ public class Timer {
                         break;
                     case 1:
                         bInput.setImageResource(R.drawable.buttonred1);
-                        break;
-                    case 2:
-                        bInput.setImageResource(R.drawable.buttongreen1);
-                        break;
-                    case 3:
-                        bInput.setImageResource(R.drawable.buttonyellow1);
-                        break;
-                    case 4:
-                        bInput.setImageResource(R.drawable.buttonpurple1);
-                        break;
-                    case 5:
-                        bInput.setImageResource(R.drawable.buttonorange1);
                         break;
                 }
             }
