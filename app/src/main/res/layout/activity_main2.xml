@@ -82,13 +82,89 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/idLayout"
+        <FrameLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="10">
-        </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/idLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="33"
+                    />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="33"
+                    />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="33"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="60">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:visibility="invisible"
+                        android:layout_weight="25"
+                        />
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:background="@color/colorPrimary"
+                        android:layout_weight="12.5"
+                        />
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:visibility="invisible"
+                        android:layout_weight="20"
+
+                        />
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
+                        android:layout_weight="12.5"
+
+                        />
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:visibility="invisible"
+                        android:layout_weight="25"
+
+                        />
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="40">
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </FrameLayout>
 
     </LinearLayout>
 
