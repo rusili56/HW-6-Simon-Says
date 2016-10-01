@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/idSplash"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        android:textAlignment="center"
+        android:gravity="bottom"
+        android:textSize="50sp"
+        android:text="Simon Says">
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:textAlignment="center"
+        android:gravity="top"
+        android:textSize="25sp"
+        android:text="by:">
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        android:textAlignment="center"
+        android:gravity="top"
+        android:textSize="25sp"
+        android:text="Jeff Avila 'n Rusi Li">
+    </TextView>
+
+</LinearLayout>

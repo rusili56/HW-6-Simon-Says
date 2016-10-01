@@ -1,5 +1,6 @@
 package nyc.c4q.rusili.hw_6_simon_says;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
 
+    boolean check = true;
     public int iLevel = 1;
     private int iUserInput = 2;
     private boolean isVertical = true;
@@ -20,8 +22,6 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SharedPreferences splevel = getSharedPreferences("preferences", 0);
-        SharedPreferences.Editor editor = splevel.edit();
 
         //  Vertical = 1, Horizontal = 2
         if (getResources().getConfiguration().orientation == 1){
@@ -31,10 +31,18 @@ public class MainActivity extends AppCompatActivity{
         }
 
         this.Draw(isVertical, iUserInput);
-        Simon.says(alButtons, iUserInput, iLevel);
-        editor.putInt("savedLevel", iLevel);
 
+        /*
+        while (check) {
+            Simon.says(alButtons, iUserInput, iLevel);
+            iLevel++;
+        }
+        */
 
+        if (!check) {
+            Intent toEnd = new Intent(this, EndGame.class);
+            startActivity(toEnd);
+        }
     }
 
     public void Draw(boolean bInput, int iInput) {

@@ -1,5 +1,6 @@
 package nyc.c4q.rusili.hw_6_simon_says;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
