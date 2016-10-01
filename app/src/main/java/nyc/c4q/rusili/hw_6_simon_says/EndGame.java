@@ -3,7 +3,6 @@ package nyc.c4q.rusili.hw_6_simon_says;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
@@ -27,5 +26,7 @@ public class EndGame extends Activity {
 
     public void endGame(View view) {
         this.finish();
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
     }
 }

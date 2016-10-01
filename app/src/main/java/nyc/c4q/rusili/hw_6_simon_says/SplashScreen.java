@@ -1,9 +1,9 @@
 package nyc.c4q.rusili.hw_6_simon_says;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -17,6 +17,7 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
                 Intent toMain = new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(toMain);
+                finish();
             }
         }, 5000);
 

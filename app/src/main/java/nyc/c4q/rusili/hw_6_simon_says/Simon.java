@@ -13,11 +13,11 @@ public class Simon {
     public static ArrayList<Integer> alSequence = new ArrayList<>();
     static Random rGenerator = new Random();
 
-    public static ArrayList<Integer> says(ArrayList<Button> bInput, int iInputDifficulty, int iInputLevel){
+    public static ArrayList<Integer> says(ArrayList<Button> bInput, int iInputDifficulty, int iInputLevel) {
         alSequence.add(rGenerator.nextInt(iInputDifficulty));
 
         // Flashes the sequence
-        for (int i=0; i<iInputLevel; i++) {
+        for (int i = 0; i < iInputLevel; i++) {
             //Timer.wait(bInput.get(???));
         }
 
