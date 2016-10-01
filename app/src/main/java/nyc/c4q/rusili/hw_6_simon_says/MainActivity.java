@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void Draw(boolean bInput, int iInput) {
+    public void Draw(boolean bInput, final int iInput) {
 //        Creates button in the layout through java
         LinearLayout llLayout = (LinearLayout) findViewById(R.id.idLayout);
         if (bInput) {
@@ -88,9 +88,10 @@ public class MainActivity extends AppCompatActivity {
             alButtons.add(button);
 
             // Button on Click:
+            final Timer timer = new Timer();
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Timer.wait(button);
+                    timer.click(button, iInput);
                 }
             });
             llLayout.addView(button);

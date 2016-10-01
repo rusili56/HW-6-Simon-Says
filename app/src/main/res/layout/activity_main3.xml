@@ -58,6 +58,7 @@
                 android:gravity="bottom"
                 android:textSize="25sp"
                 android:text="Simon's Turn"
+                android:onClick="startGame"
                 />
             <TextView
                 android:id="@+id/idHighScoreText"
