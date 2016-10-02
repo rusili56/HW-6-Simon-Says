@@ -1,8 +1,14 @@
 package nyc.c4q.rusili.hw_6_simon_says;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Handler;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import javax.xml.datatype.Duration;
 
 /**
  * Created by rusili on 9/28/16.

@@ -1,3 +1,4 @@
+
 package nyc.c4q.rusili.hw_6_simon_says;
 
 import android.content.Intent;
@@ -10,7 +11,7 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+/*
     boolean check = true;
     public int iLevel = 1;
     private int iUserInput = 6;
@@ -27,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
 
         this.Draw(isVertical, iUserInput);
 
-        /*
+
         while (check) {
             Simon.says(alButtons, iUserInput, iLevel);
             iLevel++;
         }
-        */
+
 
         if (!check) {
             Intent toEnd = new Intent(this, EndGame.class);
@@ -91,10 +92,11 @@ public class MainActivity extends AppCompatActivity {
             final Timer timer = new Timer();
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    timer.click(button, iInput);
+                    //timer.click(button, iInput);
                 }
             });
             llLayout.addView(button);
         }
     }
+    */
 }

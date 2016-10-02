@@ -1,24 +1,33 @@
 package nyc.c4q.rusili.hw_6_simon_says;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity2 extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity implements View.OnClickListener{
 
     boolean check = true;
     public int iLevel = 5;
     private int iUserInput = 4;
     private boolean isVertical = true;
+    int iClickCount = 0;
     public ArrayList<ImageView> alButtons = new ArrayList<>();
+    public ArrayList<Integer> alSequence = new ArrayList<>();
+    private boolean bPlayer = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +78,7 @@ public class MainActivity2 extends AppCompatActivity {
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             mPlayer.start();
-                            timer.click(button, iUserInput);
+                            timer.click(button, iUserInput, alSequence, iClickCount);
                         }
                     });
                     break;
@@ -79,7 +88,7 @@ public class MainActivity2 extends AppCompatActivity {
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             mPlayer1.start();
-                            timer1.click(button, iUserInput);
+                            timer1.click(button, iUserInput,alSequence, iClickCount);
                         }
                     });
                     break;
@@ -89,7 +98,7 @@ public class MainActivity2 extends AppCompatActivity {
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             mPlayer2.start();
-                            timer2.click(button, iUserInput);
+                            timer2.click(button, iUserInput, alSequence, iClickCount);
                         }
                     });
                     break;
@@ -99,7 +108,7 @@ public class MainActivity2 extends AppCompatActivity {
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             mPlayer3.start();
-                            timer3.click(button, iUserInput);
+                            timer3.click(button, iUserInput, alSequence, iClickCount);
                         }
                     });
                     break;
@@ -109,7 +118,7 @@ public class MainActivity2 extends AppCompatActivity {
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             mPlayer4.start();
-                            timer4.click(button, iUserInput);
+                            timer4.click(button, iUserInput, alSequence, iClickCount);
                         }
                     });
                     break;
@@ -119,7 +128,7 @@ public class MainActivity2 extends AppCompatActivity {
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             mPlayer5.start();
-                            timer5.click(button, iUserInput);
+                            timer5.click(button, iUserInput, alSequence, iClickCount);
                         }
                     });
                     break;
@@ -129,7 +138,7 @@ public class MainActivity2 extends AppCompatActivity {
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             mPlayer6.start();
-                            timer6.click(button, iUserInput);
+                            timer6.click(button, iUserInput, alSequence, iClickCount);
                         }
                     });
                     break;
@@ -170,7 +179,7 @@ public class MainActivity2 extends AppCompatActivity {
                 final Timer timer = new Timer();
                 button.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        timer.click(button, iUserInput);
+                        timer.click(button, iUserInput, alSequence, iClickCount);
                     }
                 });
             } else{
@@ -183,8 +192,61 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     public void startGame(View view) {
-        //Timer.simonClick(alButtons.get(0), iUserInput);
 
-        Simon.says(alButtons, iUserInput, iLevel);
+        while (!check) {
+            //Timer.simonClick(alButtons.get(0), iUserInput);
+            CanClick.no(alButtons);
+
+            final Context context = getApplicationContext();
+            CharSequence tText = "Simon's Turn";
+            int tDuration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(context, tText, tDuration);
+            toast.show();
+
+            alSequence = Simon.says(alButtons, iUserInput, iLevel);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast toast = Toast.makeText(context, "Your Turn", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }, 1500 * (iLevel + 1));
+
+            CanClick.yes(alButtons);
+            bPlayer = true;
+
+            while (bPlayer){
+            }
+
+            iLevel++;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        ImageView tempbutton = null;
+        for (int i=0; i<iUserInput*2-1; i++){
+            if (i == v.getId()){
+                tempbutton = alButtons.get(i);
+            }
+        }
+        Timer userTimer = new Timer();
+        userTimer.click(tempbutton, iLevel);
+
+        if (tempbutton.getId() == alSequence.get(iClickCount)){
+            Toast toast = Toast.makeText(this, "+", Toast.LENGTH_SHORT);
+            toast.show();
+
+            if (iClickCount == iLevel){
+                bPlayer = false;
+            } else {
+                iClickCount++;
+            }
+        } else {
+            check = false;
+        }
+
     }
 }
