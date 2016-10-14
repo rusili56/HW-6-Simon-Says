@@ -10,8 +10,6 @@ import android.widget.Button;
  * Created by rusili on 9/30/16.
  */
 public class EndGame extends Activity {
-    Button bYes = (Button) findViewById(R.id.idYes);
-    Button bNo = (Button) findViewById(R.id.idNo);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +18,7 @@ public class EndGame extends Activity {
     }
 
     public void restart(View view) {
-        Intent toMain = new Intent(this, MainActivity.class);
+        Intent toMain = new Intent(this, MainActivity2.class);
         startActivity(toMain);
     }
 

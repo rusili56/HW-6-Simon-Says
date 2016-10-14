@@ -46,7 +46,6 @@
                 android:layout_height="match_parent"
                 android:gravity="bottom"
                 android:textSize="25sp"
-                android:text="10"
                 android:layout_weight="10"
                 />
             <TextView
@@ -57,7 +56,7 @@
                 android:textAlignment="center"
                 android:gravity="bottom"
                 android:textSize="25sp"
-                android:text="Simon's Turn"
+                android:text="Play"
                 android:onClick="startGame"
                 />
             <TextView

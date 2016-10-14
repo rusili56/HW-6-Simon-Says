@@ -8,11 +8,13 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,20 +22,20 @@ import java.util.ArrayList;
 public class MainActivity2 extends AppCompatActivity implements View.OnClickListener{
 
     boolean check = true;
-    public int iLevel = 5;
-    private int iUserInput = 4;
+    public int iLevel = 1;
+    private int iUserInput = 3;
     private boolean isVertical = true;
     int iClickCount = 0;
     public ArrayList<ImageView> alButtons = new ArrayList<>();
     public ArrayList<Integer> alSequence = new ArrayList<>();
-    private boolean bPlayer = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        alSequence.add(0);
 
         //  Vertical = 1, Horizontal = 2
         isVertical = getResources().getConfiguration().orientation == 1;
@@ -45,15 +47,14 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         */
         drawWhite(isVertical, iUserInput);
         drawBlack(isVertical, iUserInput);
-
-        if (!check) {
-            Intent toEnd = new Intent(this, EndGame.class);
-            startActivity(toEnd);
-            finish();
-        }
+        CanClick.no(alButtons);
     }
 
     public void drawWhite(boolean bInput, int iInput) {
+        TextView tvLevel = (TextView) findViewById(R.id.idLevel);
+        tvLevel.setText(Integer.toString(iLevel));
+        Log.d("Draw Level:", Integer.toString(iLevel));
+
 //        Creates button in the layout through java
         LinearLayout llLayout = (LinearLayout) findViewById(R.id.idWhiteLayout);
         // Gets layout parameters
@@ -65,12 +66,15 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         // Creates each button
         for (int i = 0; i < iInput; i++) {
 
-            final ImageView button = new ImageView(MainActivity2.this);
+            ImageView button = new ImageView(MainActivity2.this);
             button.setId(i);
+            Log.d("Draw White:", Integer.toString(button.getId()));
             button.setTag("White" + i);
             button.setLayoutParams(lpParams);
 
             button.setImageResource(R.drawable.buttonblue1);
+            button.setOnClickListener(this);
+            /*
             switch (i){
                 case 0:
                     final MediaPlayer mPlayer = MediaPlayer.create(this, R.raw.c);
@@ -78,7 +82,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             mPlayer.start();
-                            timer.click(button, iUserInput, alSequence, iClickCount);
+                            timer.click(button, iUserInput);
                         }
                     });
                     break;
@@ -88,7 +92,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             mPlayer1.start();
-                            timer1.click(button, iUserInput,alSequence, iClickCount);
+                            timer1.click(button, iUserInput);
                         }
                     });
                     break;
@@ -98,7 +102,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             mPlayer2.start();
-                            timer2.click(button, iUserInput, alSequence, iClickCount);
+                            timer2.click(button, iUserInput);
                         }
                     });
                     break;
@@ -108,7 +112,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             mPlayer3.start();
-                            timer3.click(button, iUserInput, alSequence, iClickCount);
+                            timer3.click(button, iUserInput);
                         }
                     });
                     break;
@@ -118,7 +122,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             mPlayer4.start();
-                            timer4.click(button, iUserInput, alSequence, iClickCount);
+                            timer4.click(button, iUserInput);
                         }
                     });
                     break;
@@ -128,7 +132,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             mPlayer5.start();
-                            timer5.click(button, iUserInput, alSequence, iClickCount);
+                            timer5.click(button, iUserInput);
                         }
                     });
                     break;
@@ -138,23 +142,23 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                     button.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             mPlayer6.start();
-                            timer6.click(button, iUserInput, alSequence, iClickCount);
+                            timer6.click(button, iUserInput);
                         }
                     });
                     break;
             }
+            */
 
             button.setScaleType(ImageView.ScaleType.FIT_XY);
 
             alButtons.add(button);
-
-            // Button on Click:
 
             llLayout.addView(button);
         }
     }
 
     public void drawBlack(boolean bInput, final int iInput) {
+        int iBlack = 0;
         int iInput2 = (iInput*2) - 1;
 //        Creates button in the layout through java
         LinearLayout llLayout = (LinearLayout) findViewById(R.id.idBlackLayout);
@@ -167,21 +171,18 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         // Creates each button
         for (int i = 0; i < iInput2; i++) {
 
-            final ImageView button = new ImageView(MainActivity2.this);
-            button.setId(iUserInput + i);
-            button.setTag("Button" + i);
+            ImageView button = new ImageView(MainActivity2.this);
+
             button.setLayoutParams(lpParams);
 
             if ((i+2) % 2 == 1){
+                iBlack++;
+                button.setId((iInput - 1) + iBlack);
+                Log.d("Draw Black", Integer.toString(button.getId()));
+                button.setTag("Button" + i);
                 alButtons.add(button);
                 button.setImageResource(R.drawable.buttonred1);
-                // Button on Click:
-                final Timer timer = new Timer();
-                button.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        timer.click(button, iUserInput, alSequence, iClickCount);
-                    }
-                });
+                button.setOnClickListener(this);
             } else{
                 button.setVisibility(View.INVISIBLE);
             }
@@ -191,10 +192,9 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public void startGame(View view) {
+    public void startGame(View v) {
 
-        while (!check) {
-            //Timer.simonClick(alButtons.get(0), iUserInput);
+        //while (!check) {
             CanClick.no(alButtons);
 
             final Context context = getApplicationContext();
@@ -211,21 +211,29 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                 public void run() {
                     Toast toast = Toast.makeText(context, "Your Turn", Toast.LENGTH_SHORT);
                     toast.show();
+                    CanClick.yes(alButtons);
                 }
             }, 1500 * (iLevel + 1));
 
-            CanClick.yes(alButtons);
-            bPlayer = true;
+            /*
 
-            while (bPlayer){
-            }
-
+            iClickCount = 0;
             iLevel++;
-        }
+            */
+        //}
+
+        /* to Endgame
+        iClickCount = 0;
+        iLevel = 0;
+        iUserInput = 0;
+        Intent toEndGame = new Intent(this, EndGame.class);
+        startActivity(toEndGame);
+        */
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(final View v) {
+
         ImageView tempbutton = null;
         for (int i=0; i<iUserInput*2-1; i++){
             if (i == v.getId()){
@@ -233,20 +241,28 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
             }
         }
         Timer userTimer = new Timer();
-        userTimer.click(tempbutton, iLevel);
+        userTimer.click(tempbutton, iUserInput);
 
         if (tempbutton.getId() == alSequence.get(iClickCount)){
+            iClickCount++;
             Toast toast = Toast.makeText(this, "+", Toast.LENGTH_SHORT);
             toast.show();
-
             if (iClickCount == iLevel){
-                bPlayer = false;
-            } else {
-                iClickCount++;
+                iLevel++;
+                TextView tvLevel = (TextView) findViewById(R.id.idLevel);
+                tvLevel.setText(Integer.toString(iLevel));
+                iClickCount = 0;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startGame(v);
+                    }
+                }, 2000);
             }
         } else {
-            check = false;
+            Intent toEndGame = new Intent(this, EndGame.class);
+            startActivity(toEndGame);
+            finish();
         }
-
     }
 }
